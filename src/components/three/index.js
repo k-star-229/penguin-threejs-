@@ -3,6 +3,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { ThreeCircles } from  'react-loader-spinner';
+import { connect } from 'react-redux';
+import { setDStateLoading, setStatus } from '../../actions/dstate';
 
 var obj;
 
@@ -38,7 +40,7 @@ function loadGLTFModel(scene, glbPath, options) {
   });
 }
 
-const DState = () => {
+const DState = ({ setDStateLoading, setStatus }) => {
   const refContainer = useRef();
   const [loading, setLoading] = useState(true);
   const [renderer, setRenderer] = useState();
@@ -74,12 +76,12 @@ const DState = () => {
       light.position.x = 0.2;
       light.position.y = 2.5;
       light.position.z = -0.5;
+
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.autoRotate = false;
       controls.target = target;
       controls.enableZoom = false;
-      controls.enableRotate = false;
-      
+      controls.enableRotate = false;      
 
       loadGLTFModel(scene, '/DState.glb', {
         receiveShadow: false,
@@ -132,4 +134,8 @@ const DState = () => {
   );
 };
 
-export default DState;
+const mapStateToProps = (state) => ({
+  isLoading: state.dstate.isLoading
+});
+
+export default connect(mapStateToProps, { setDStateLoading, setStatus })(DState);
