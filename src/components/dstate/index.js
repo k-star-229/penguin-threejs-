@@ -135,7 +135,8 @@ const DState = ({ setDStateLoading, setStatus }) => {
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: state.dstate.isLoading
+  isLoading: state.dstate.isLoading,
+  status: state.dstate.status
 });
 
 export default connect(mapStateToProps, { setDStateLoading, setStatus })(DState);
