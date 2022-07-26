@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import DState from './components/dstate';
 import Home from './pages/Home';
 
 // Redux

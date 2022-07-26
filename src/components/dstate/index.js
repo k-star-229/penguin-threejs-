@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { ThreeCircles } from  'react-loader-spinner';
+import CircleLoader from "react-spinners/CircleLoader";
+
 import { connect } from 'react-redux';
 import { setDStateLoading, setStatus } from '../../actions/dstate';
 
@@ -16,7 +17,7 @@ function loadGLTFModel(scene, glbPath, options) {
       glbPath,
       (gltf) => {
         obj = gltf.scene;
-        obj.name = "dinosaur";
+        obj.name = 'dstate';
         obj.position.y = 1;
         obj.position.x = -0.2;
         obj.receiveShadow = receiveShadow;
@@ -45,8 +46,34 @@ const DState = ({ setDStateLoading, setStatus }) => {
   const [loading, setLoading] = useState(true);
   const [renderer, setRenderer] = useState();
 
+  let lastScrollTop = 0;
+
+  window.addEventListener('scroll', function(){
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (obj && st > lastScrollTop){
+      obj.rotation.y += 0.001;
+    } else if (obj){
+      obj.rotation.y -= 0.001;
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+    if (lastScrollTop < window.innerHeight) {
+      setStatus(0);
+    } else if (lastScrollTop >= window.innerHeight && lastScrollTop < window.innerHeight*2) {
+      setStatus(1);
+    } else if (lastScrollTop >= window.innerHeight*2 && lastScrollTop < window.innerHeight*3) {
+      setStatus(2)
+    } else if (lastScrollTop >= window.innerHeight*3 && lastScrollTop < window.innerHeight*4) {
+      setStatus(3);
+    } else if (lastScrollTop >= window.innerHeight*4 && lastScrollTop < window.innerHeight*5) {
+      setStatus(4);
+    } else if (lastScrollTop == window.innerHeight*5) {
+      setStatus(5)
+    } 
+  });
+
   useEffect(() => {
     const { current: container } = refContainer;
+
     if (container && !renderer) {
       const scW = container.clientWidth;
       const scH = container.clientHeight;
@@ -83,12 +110,13 @@ const DState = ({ setDStateLoading, setStatus }) => {
       controls.enableZoom = false;
       controls.enableRotate = false;      
 
-      loadGLTFModel(scene, '/DState.glb', {
+      loadGLTFModel(scene, 'model/DState.glb', {
         receiveShadow: false,
         castShadow: false
       }).then(() => {
         animate();
         setLoading(false);
+        setDStateLoading(false);
       });
 
       let req = null;
@@ -122,11 +150,10 @@ const DState = ({ setDStateLoading, setStatus }) => {
     >
     {loading && (
       <span style={{ position: 'absolute', left: '40%', top: '30%' }}>
-        <ThreeCircles
+        <CircleLoader
           color='#23b8fd'
-          height={300}
-          width={300}
-          ariaLabel='three-circles-rotating'
+          size={300}
+          loading={true}
         />
       </span>
     )}

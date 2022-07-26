@@ -2,7 +2,7 @@ import { DSTATE_LOADED, STATUS_UPDATED } from '../actions/types';
 
 const initialState = {
   isLoading: true,
-  status: null
+  status: 0
 };
 
 function dstateReducer(state = initialState, action) {
