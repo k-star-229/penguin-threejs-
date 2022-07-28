@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
-import DState from '../components/dstate';
+import DState from '../components/three';
+// import Intro from './Intro';
 
 import { FaDiscord, FaTwitter } from 'react-icons/fa';
 import { ImMap2} from 'react-icons/im';
 import { BsSpotify } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 
-const Home = ({ isLoading, status }) => {
+const Home = ({ isLoading, isVideoLoaded, status }) => {
 
   const [loading, setLoading] = useState(true);
   const [state, setState] = useState(-1);
@@ -16,13 +17,13 @@ const Home = ({ isLoading, status }) => {
       setLoading(isLoading);
       setState(status.status);
     }
-  });
+  },[]);
 
   return (
     <div style={{ width: window.innerWidth-20, height: window.innerHeight * 6, margin: '0 auto' }}>
       <DState />
-      {loading == false ? (state == 0 ? 
-      <div className='fixed z-[100] w-full h-screen'>
+      {loading === false ? (state === 0 ? 
+      <div className='fixed z-[100] w-full'>
         <div className='relative w-full h-screen mt-10'>
           <div className='flex justify-between mt-3 mx-24 items-center'>
             <img src='/logo.png' />
@@ -33,9 +34,9 @@ const Home = ({ isLoading, status }) => {
         <div className='relative w-full h-screen bottom-[180px]'>
           <div className='flex justify-between'>
             <div className='text-white mx-24'>
-              <p className='title font-[1000] text-[24px]'>WE ARE D. STATE</p>
-              <p className='detail text-[20px]'>Define State is the crossroads of Reality and Artificial Intelligence. AI-powered </p>
-              <p className='detail text-[20px]'>apps, elastic tokenomics and real world assets provide value to our investors.</p>
+              <p className='title font-[1000] text-[20px]'>WE ARE D. STATE</p>
+              <p className='detail text-[20px] tracking-[.1em]'>Define State is the crossroads of Reality and Artificial Intelligence. AI-powered </p>
+              <p className='detail text-[20px] tracking-[.1em]'>apps, elastic tokenomics and real world assets provide value to our investors.</p>
             </div>
             <div className='text-white text-3xl mx-36 flex items-center'>
               <p className='border p-2 mx-1'><FaDiscord /></p>
@@ -45,44 +46,50 @@ const Home = ({ isLoading, status }) => {
         </div>
       </div>
       : '') : ''}
-      {loading == false ? (state == 1 ?
-      <div className='fixed z-[100] w-full h-screen'>
-        <div className='flex justify-end relative w-full h-screen items-center text-white'>
-          <div className='mx-24'><p className='title font-[1000] text-[80px] text-right'>CHATTER</p><br />
-          <p className='detail  text-[24px]'>Chatter is our AI-powered social media </p>
-          <p className='detail text-[24px]'>aggregator tool. Get all the news, trends, </p>
-          <p className='detail text-[24px]'>and information you need in one place.</p></div>
-        </div>
-      </div>
-      : '') : ''}
-      {loading == false ? (state == 2 ?
-        <div className='fixed z-[100] w-full h-screen'>
-          <div className='flex justify-start relative w-full h-screen items-center text-white'>
-            <div className='mx-24'>
-              <p className='title font-[1000] text-[160px]'>10,000</p>
-              <p className='title font-[1000] text-[48px] mb-5 tracking-wide'>HIGH-QUALITY AVATARS</p>
-              <p className='detail tracking-wide text-[24px]'>in a refreshing art-style. While most</p>
-              <p className='detail tracking-wide text-[24px]'>aggregator tool. Get all the news, trends, </p>
-              <p className='detail tracking-wide text-[24px]'>experimental game theory,  deflationary</p>
-              <p className='detail tracking-wide text-[24px]'> mechanisms and real-world utility behind</p>
-              <p className='detail tracking-wide text-[24px]'> the art to gamify the collection. Please</p>
-              <p className='detail tracking-wide text-[24px]'> see the Campus Map for more information.</p>
+      {loading === false ? (state === 1 ?
+      <div className='fixed z-[100]'>
+        <div className='grid grid-cols-2 relative w-full h-screen items-center text-white'>
+          <div className='ml-24 col-start-2'>
+            <p className='title font-[1000] text-[80px] text-right'>CHATTER</p><br />
+            <div className='detail text-[28px] text-right tracking-[.15em]'>
+              <p>Chatter is our AI-powered social media </p>
+              <p>aggregator tool. Get all the news, trends, </p>
+              <p>and information you need in one place.</p>
             </div>
           </div>
         </div>
+      </div>
+      : '') : ''}
+      {loading === false ? (state === 2 ?
+      <div className='fixed z-[100] w-full h-screen'>
+        <div className='flex justify-start relative w-full h-screen items-center text-white'>
+          <div className='mx-24'>
+            <p className='title font-[1000] text-[160px]'>10,000</p>
+            <p className='title font-[1000] text-[48px] mb-5 tracking-wide'>HIGH-QUALITY AVATARS</p>
+            <div className='detail mt-5 text-[28px] tracking-[.15em]'>
+              <p>in a refreshing art-style. While most</p>
+              <p>aggregator tool. Get all the news, trends, </p>
+              <p>experimental game theory,  deflationary</p>
+              <p> mechanisms and real-world utility behind</p>
+              <p> the art to gamify the collection. Please</p>
+              <p> see the Campus Map for more information.</p>
+            </div>
+          </div>
+        </div>
+      </div>
         : '') : ''}
-      {loading == false ? (state == 3 ?
+      {loading === false ? (state === 3 ?
       <div className='fixed z-[100] w-full h-screen'>
         <div className='mt-20 relative grid grid-cols-2'>
           <div className='col-start-2 text-white'>
             <p className='title font-bold text-[70px]'>STUDENTS</p>
-            <div className='mt-5 text-[28px] tracking-[.15em]'>
+            <div className='detail mt-5 text-[28px] tracking-[.15em]'>
               <p>are separated into 4 class types - </p>
               <p> Athletes, Hippies, Punks and Devs. Which </p> 
               <p>one will you be in?</p>
             </div>
             <div className='grid grid-cols-3 gap-x-10 detail mt-5'>
-              <div>
+              <div className='detail'>
                 <div className=''>
                   <button className='bg-black rounded-md w-full h-full text-white text-[24px] py-10'><p className='title font-bold text-[80px]'>?</p>Atheletes</button>
                 </div>
@@ -103,12 +110,12 @@ const Home = ({ isLoading, status }) => {
         </div>
       </div>
       : '') : ''}
-      {loading == false ? (state == 4 ?
+      {loading === false ? (state === 4 ?
       <div className='fixed z-[100] w-full h-screen'>
         <div className='relative items-center w-full h-screen grid grid-cols-2 '>
-          <div className='ml-40 col-start-1 text-white '>
-            <p className=' title font-bold text-[70px]'>ALMA MATER</p>
-            <div className='mt-5 text-[28px] tracking-[.15em]'>
+          <div className='ml-60 col-start-1 text-white '>
+            <p className='title font-bold text-[70px]'>ALMA MATER</p>
+            <div className='detail mt-5 text-[28px] tracking-[.15em]'>
               <p>Everything is changing,</p>
               <p>but why bother waiting?</p>
               <p>The world is yours for the taking,</p>
@@ -122,7 +129,7 @@ const Home = ({ isLoading, status }) => {
         </div>
       </div>
       : '') : ''}
-      {loading == false ? (state == 5 ?
+      {loading === false ? (state === 5 ?
       <div className='fixed bg-black z-[100] w-full h-screen'>
         <div className='relative w-full h-screen text-white'>
           <div className='mt-40 flex justify-center'>
@@ -137,9 +144,9 @@ const Home = ({ isLoading, status }) => {
             <p className='border p-2'><ImMap2 /></p>
           </div>
           <div className='flex justify-center mt-5'>
-            <div className='detail text-slate-500 mx-24 text-[20px]'>
-              <p>Define State is a registered trademark. All Rights Reserved. All logos are registered trademarks of their</p>
-              <p> respective owners. All contents of this document, unless otherwise credited, are copyright ©️ 2022 Define State. </p>
+            <div className='detail text-slate-500 mx-24 text-center'>
+              <p className='text-[20px]'>Define State is a registered trademark. All Rights Reserved. All logos are registered trademarks of their</p>
+              <p className='text-[20px]'> respective owners. All contents of this document, unless otherwise credited, are copyright ©️ 2022 Define State. </p>
             </div>
           </div>
         </div>
@@ -151,7 +158,8 @@ const Home = ({ isLoading, status }) => {
 
 const mapStateToProps = (state) => ({
   isLoading: state.dstate.isLoading,
-  status: state.dstate.status
+  status: state.dstate.status,
+  isVideoLoaded: state.dstate.isVideoLoaded
 });
 
 export default connect(mapStateToProps)(Home);

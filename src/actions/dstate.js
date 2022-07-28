@@ -1,8 +1,14 @@
-import { DSTATE_LOADED, STATUS_UPDATED } from './types';
+import { DSTATE_LOADED, STATUS_UPDATED, VIDEO_LOADED } from './types';
 
 export const setDStateLoading = () => dispatch => {
   dispatch({
     type: DSTATE_LOADED
+  });
+};
+
+export const setVideoLoading = () => dispatch => {
+  dispatch({
+    type: VIDEO_LOADED
   });
 };
 
