@@ -15,6 +15,6 @@ export const setVideoLoading = () => dispatch => {
 export const setStatus = (status) => dispatch => {
   dispatch({
     type: STATUS_UPDATED,
-    payload: { status }
+    payload: status
   });
 }

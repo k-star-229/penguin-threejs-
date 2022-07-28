@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { setDStateLoading, setStatus } from '../../actions/dstate';
 
 var obj;
+let speed = 0.005;
 
 function loadGLTFModel(scene, glbPath, options) {
   const { receiveShadow, castShadow } = options;
@@ -53,12 +54,11 @@ const DState = ({ setDStateLoading, setStatus }) => {
       var st = window.pageYOffset || document.documentElement.scrollTop;
 
       if (obj && st > lastScrollTop){
-        obj.rotation.y -= 0.005;
+        obj.rotation.y -= speed;
       } else if (obj && st < lastScrollTop){
-        obj.rotation.y += 0.005;
+        obj.rotation.y += speed;
       }
 
-      console.log(`Rotation : ${obj.rotation.y}`)
       lastScrollTop = st <= 0 ? 0 : st;
       if (st >= 0 && st < window.innerHeight) {
         setStatus(0);
@@ -70,7 +70,7 @@ const DState = ({ setDStateLoading, setStatus }) => {
         setStatus(3);
       } else if (st >= window.innerHeight*4 && st < window.innerHeight*5) {
         setStatus(4);
-      } else if (st === window.innerHeight*5) {
+      } else if (st == window.innerHeight*5) {
         setStatus(5)
       }
     };
@@ -79,18 +79,6 @@ const DState = ({ setDStateLoading, setStatus }) => {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handlePlay = event => {
-      console.log('videoloaded')
-    };
-
-    window.addEventListener('play', handlePlay);
-
-    return () => {
-      window.removeEventListener('play', handlePlay);
     };
   }, []);
 
@@ -168,6 +156,7 @@ const DState = ({ setDStateLoading, setStatus }) => {
     setTimeout(() => {
       setLoading(false);
       setDStateLoading(false);
+      setStatus(0)
     }, 7000);
   }, []);
 

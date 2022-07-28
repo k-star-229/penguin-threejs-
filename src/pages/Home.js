@@ -1,28 +1,27 @@
 import { connect } from 'react-redux';
 import DState from '../components/three';
-// import Intro from './Intro';
 
 import { FaDiscord, FaTwitter } from 'react-icons/fa';
 import { ImMap2} from 'react-icons/im';
 import { BsSpotify } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 
-const Home = ({ isLoading, isVideoLoaded, status }) => {
+const Home = ({ isLoading, status }) => {
 
   const [loading, setLoading] = useState(true);
-  const [state, setState] = useState(-1);
+  const [state, setState] = useState();
 
   useEffect(() => {
-    if(status) {
+    if(status >= 0) {
       setLoading(isLoading);
-      setState(status.status);
+      setState(status);
     }
-  },[]);
+  });
 
   return (
     <div style={{ width: window.innerWidth-20, height: window.innerHeight * 6, margin: '0 auto' }}>
       <DState />
-      {loading === false ? (state === 0 ? 
+      {loading == false ? (state == 0 ? 
       <div className='fixed z-[100] w-full'>
         <div className='relative w-full h-screen mt-10'>
           <div className='flex justify-between mt-3 mx-24 items-center'>
@@ -46,7 +45,7 @@ const Home = ({ isLoading, isVideoLoaded, status }) => {
         </div>
       </div>
       : '') : ''}
-      {loading === false ? (state === 1 ?
+      {loading == false ? (state == 1 ?
       <div className='fixed z-[100]'>
         <div className='grid grid-cols-2 relative w-full h-screen items-center text-white'>
           <div className='ml-24 col-start-2'>
@@ -60,7 +59,7 @@ const Home = ({ isLoading, isVideoLoaded, status }) => {
         </div>
       </div>
       : '') : ''}
-      {loading === false ? (state === 2 ?
+      {loading == false ? (state == 2 ?
       <div className='fixed z-[100] w-full h-screen'>
         <div className='flex justify-start relative w-full h-screen items-center text-white'>
           <div className='mx-24'>
@@ -78,7 +77,7 @@ const Home = ({ isLoading, isVideoLoaded, status }) => {
         </div>
       </div>
         : '') : ''}
-      {loading === false ? (state === 3 ?
+      {loading == false ? (state == 3 ?
       <div className='fixed z-[100] w-full h-screen'>
         <div className='mt-20 relative grid grid-cols-2'>
           <div className='col-start-2 text-white'>
@@ -110,7 +109,7 @@ const Home = ({ isLoading, isVideoLoaded, status }) => {
         </div>
       </div>
       : '') : ''}
-      {loading === false ? (state === 4 ?
+      {loading == false ? (state == 4 ?
       <div className='fixed z-[100] w-full h-screen'>
         <div className='relative items-center w-full h-screen grid grid-cols-2 '>
           <div className='ml-60 col-start-1 text-white '>
@@ -129,7 +128,7 @@ const Home = ({ isLoading, isVideoLoaded, status }) => {
         </div>
       </div>
       : '') : ''}
-      {loading === false ? (state === 5 ?
+      {loading == false ? (state == 5 ?
       <div className='fixed bg-black z-[100] w-full h-screen'>
         <div className='relative w-full h-screen text-white'>
           <div className='mt-40 flex justify-center'>
@@ -158,8 +157,7 @@ const Home = ({ isLoading, isVideoLoaded, status }) => {
 
 const mapStateToProps = (state) => ({
   isLoading: state.dstate.isLoading,
-  status: state.dstate.status,
-  isVideoLoaded: state.dstate.isVideoLoaded
+  status: state.dstate.status
 });
 
 export default connect(mapStateToProps)(Home);
