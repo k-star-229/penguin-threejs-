@@ -25,7 +25,7 @@ const Home = ({ isLoading, status }) => {
       <div className='fixed z-[100] w-full'>
         <div className='relative w-full h-screen mt-10'>
           <div className='flex justify-between mt-3 mx-24 items-center'>
-            <img src='/logo.png' />
+            <img width={120} src='/logo.png' />
             <p className='text-white pointer text-3xl border border-white py-1 px-3'
               >&#9776;</p>
           </div>
