@@ -34,8 +34,8 @@ const Home = ({ isLoading, status }) => {
           <div className='flex justify-between'>
             <div className='text-white mx-24'>
               <p className='title font-[1000] text-[20px]'>WE ARE D. STATE</p>
-              <p className='detail text-[20px] tracking-[.1em]'>Define State is the crossroads of Reality and Artificial Intelligence. AI-powered </p>
-              <p className='detail text-[20px] tracking-[.1em]'>apps, elastic tokenomics and real world assets provide value to our investors.</p>
+              <p className='detail text-[20px] tracking-[.1em]'>D. State is a gamified, high-quality art collection with holder-exclusive tools. </p>
+              {/* <p className='detail text-[20px] tracking-[.1em]'></p> */}
             </div>
             <div className='text-white text-3xl mx-36 flex items-center'>
               <p className='border p-2 mx-1'><FaDiscord /></p>
@@ -49,11 +49,12 @@ const Home = ({ isLoading, status }) => {
       <div className='fixed z-[100]'>
         <div className='grid grid-cols-2 relative w-full h-screen items-center text-white'>
           <div className='ml-24 col-start-2'>
-            <p className='title font-[1000] text-[80px] text-right'>CHATTER</p><br />
+            <p className='title font-[1000] text-[80px] text-right'>TOOLS</p><br />
             <div className='detail text-[28px] text-right tracking-[.15em]'>
-              <p>Chatter is our AI-powered social media </p>
-              <p>aggregator tool. Get all the news, trends, </p>
-              <p>and information you need in one place.</p>
+              <p>Cutting Edge is our AI powered tool, </p>
+              <p>available exclusively to holders.  </p>
+              <p>Find trending information, analytics, </p>
+              <p> and much more in our decentralized app.</p>
             </div>
           </div>
         </div>
@@ -63,15 +64,14 @@ const Home = ({ isLoading, status }) => {
       <div className='fixed z-[100] w-full h-screen'>
         <div className='flex justify-start relative w-full h-screen items-center text-white'>
           <div className='mx-24'>
-            <p className='title font-[1000] text-[160px]'>10,000</p>
-            <p className='title font-[1000] text-[48px] mb-5 tracking-wide'>HIGH-QUALITY AVATARS</p>
+            {/* <p className='title font-[1000] text-[160px]'>10,000</p> */}
+            <p className='title font-[1000] text-[48px] mb-5 tracking-wide'>Game Theory</p>
             <div className='detail mt-5 text-[28px] tracking-[.15em]'>
-              <p>in a refreshing art-style. While most</p>
-              <p>aggregator tool. Get all the news, trends, </p>
-              <p>experimental game theory,  deflationary</p>
-              <p> mechanisms and real-world utility behind</p>
-              <p> the art to gamify the collection. Please</p>
-              <p> see the Campus Map for more information.</p>
+              <p>High-quality art in a refreshing style.</p>
+              <p>While most projects stop here, </p>
+              <p>we’ve developed an experimental game theory</p>
+              <p> with deflationary mechanisms and real-world </p>
+              <p> utility to gamify the NFT collection. </p>
             </div>
           </div>
         </div>
@@ -81,24 +81,23 @@ const Home = ({ isLoading, status }) => {
       <div className='fixed z-[100] w-full h-screen'>
         <div className='mt-20 relative grid grid-cols-2'>
           <div className='col-start-2 text-white'>
-            <p className='title font-bold text-[70px]'>STUDENTS</p>
+            <p className='title font-bold text-[70px]'>Avatars</p>
             <div className='detail mt-5 text-[28px] tracking-[.15em]'>
-              <p>are separated into 4 class types - </p>
-              <p> Athletes, Hippies, Punks and Devs. Which </p> 
-              <p>one will you be in?</p>
+              <p>Student avatars are categorized </p>
+              <p> into four class types. </p> 
             </div>
             <div className='grid grid-cols-3 gap-x-10 detail mt-5'>
               <div className='detail'>
                 <div className=''>
-                  <button className='bg-black rounded-md w-full h-full text-white text-[24px] py-10'><p className='title font-bold text-[80px]'>?</p>Atheletes</button>
+                  <button className='bg-black rounded-md w-full h-full text-white text-[24px] py-10'><p className='title font-bold text-[80px]'>?</p>Vogues</button>
                 </div>
                 <div className='mt-10'>
-                  <button className='bg-black rounded-md w-full h-full text-white text-[24px] py-10'><p className='title font-bold text-[80px]'>?</p>Punks</button>
+                  <button className='bg-black rounded-md w-full h-full text-white text-[24px] py-10'><p className='title font-bold text-[80px]'>?</p>Hippies</button>
                 </div>
               </div>
               <div>
                 <div className='mt-10'>
-                  <button className='bg-black rounded-md w-full h-full text-white text-[24px] py-10'><p className='title font-bold text-[80px]'>?</p>Hippies</button>
+                  <button className='bg-black rounded-md w-full h-full text-white text-[24px] py-10'><p className='title font-bold text-[80px]'>?</p>Misfits</button>
                 </div>
                 <div className='mt-10'>
                   <button className='bg-black rounded-md w-full h-full text-white text-[24px] py-10'><p className='title font-bold text-[80px]'>?</p>Devs</button>
@@ -121,7 +120,7 @@ const Home = ({ isLoading, status }) => {
               <p>and you' ll be the one creating.</p>
               <p>Your choices decide your fate,</p>
               <p>so be careful which ones you make.</p>
-              <p>Welcome to Define State,</p>
+              <p>Welcome to D. State,</p>
               <p>I hope you enjoy your stay.</p>
             </div>
           </div>

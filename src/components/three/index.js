@@ -6,9 +6,11 @@ import PuffLoader from "react-spinners/PuffLoader";
 
 import { connect } from 'react-redux';
 import { setDStateLoading, setStatus } from '../../actions/dstate';
+import { AxesHelper } from 'three';
 
-var obj;
-let speed = 0.005;
+let obj;
+let mixer;
+let speed = 0.007;
 
 function loadGLTFModel(scene, glbPath, options) {
   const { receiveShadow, castShadow } = options;
@@ -23,15 +25,18 @@ function loadGLTFModel(scene, glbPath, options) {
         obj.position.x = -0.2;
         obj.receiveShadow = receiveShadow;
         obj.castShadow = castShadow;
-        scene.add(obj);
-
         obj.traverse(function (child) {
           if (child.isMesh) {
             child.castShadow = castShadow;
             child.receiveShadow = receiveShadow;
           }
         });
-
+         
+        mixer = new THREE.AnimationMixer( gltf.scene );
+        gltf.animations.forEach((clip) => {
+          mixer.clipAction(clip).play();
+        });
+        scene.add(obj);
         resolve(obj);
       },
       undefined,
@@ -99,6 +104,7 @@ const DState = ({ setDStateLoading, setStatus }) => {
       setRenderer(renderer);
 
       const scene = new THREE.Scene();
+
       const scale = 0.9;
       const camera = new THREE.OrthographicCamera(
         -scale,
@@ -111,15 +117,30 @@ const DState = ({ setDStateLoading, setStatus }) => {
       const target = new THREE.Vector3(0, 2, 0);
       const light = new THREE.PointLight(0xFFFFFF);
       scene.add(light);
-      light.position.x = 0.2;
+      light.position.x = 0.5;
       light.position.y = 2.5;
       light.position.z = -0.5;
+      light.lookAt(target);
+
+      const light2 = new THREE.PointLight(0xFFFFFF);
+      scene.add(light2);
+      light2.position.x = -0.5;
+      light2.position.y = 2.5;
+      light2.position.z = -0.5;
+      light2.lookAt(target);
+
+      const light3 = new THREE.PointLight(0xFFFFFF);
+      scene.add(light3);
+      light3.position.x = 0.5;
+      light3.position.y = 1.5;
+      light3.position.z = 0.5;
+      light3.lookAt(target);
 
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.autoRotate = false;
       controls.target = target;
       controls.enableZoom = false;
-      controls.enableRotate = false;      
+      controls.enableRotate = false;
 
       loadGLTFModel(scene, 'model/DState_Aniamtion.glb', {
         receiveShadow: false,
@@ -133,15 +154,14 @@ const DState = ({ setDStateLoading, setStatus }) => {
       const animate = () => {
         req = requestAnimationFrame(animate);
         frame = frame <= 100 ? frame + 1 : frame;
-
         if (frame <= 100) {
           camera.position.y = 2.5;
           camera.position.x = 0.2;
           camera.position.z = -1.8;
           camera.lookAt(target);
-        } else { 
+        } else {          
           controls.update();
-        }
+        }        
         renderer.render(scene, camera);
       };
 
