@@ -121,7 +121,7 @@ const DState = ({ setDStateLoading, setStatus }) => {
       controls.enableZoom = false;
       controls.enableRotate = false;      
 
-      loadGLTFModel(scene, 'model/DState_Aniamtion.gltf', {
+      loadGLTFModel(scene, 'model/DState_Aniamtion.glb', {
         receiveShadow: false,
         castShadow: false
       }).then(() => {
